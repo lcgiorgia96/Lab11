@@ -36,7 +36,7 @@ public class BarController {
 
     }
 
-	public void setModel(Model model2) {
+	public void setModel(Model model) {
 	this.model=model;
 	}
 }
