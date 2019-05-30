@@ -8,6 +8,10 @@ public class TestModel {
 		
 		sim.init();
 		sim.run();
+		
+		System.out.println("TOT CLIENTI: "+sim.getNumero_totale_clienti()+"\n Numero clienti soddisfatti: "+sim.getNumero_clienti_soddisfatti()+"\nNumero clienti insoddisfatti: "+sim.getNumero_clienti_insoddisfatti());
+		
+	
 	}
 
 }

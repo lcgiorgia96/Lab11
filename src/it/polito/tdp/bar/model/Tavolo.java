@@ -2,7 +2,7 @@ package it.polito.tdp.bar.model;
 
 import java.time.LocalTime;
 
-public class Tavolo {
+public class Tavolo implements Comparable<Tavolo>{
 
 	private int posti;
 	private boolean occupato;
@@ -46,6 +46,9 @@ public class Tavolo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (occupato ? 1231 : 1237);
+		result = prime * result + ((oraArrivo == null) ? 0 : oraArrivo.hashCode());
+		result = prime * result + ((oraVia == null) ? 0 : oraVia.hashCode());
 		result = prime * result + posti;
 		return result;
 	}
@@ -58,6 +61,18 @@ public class Tavolo {
 		if (getClass() != obj.getClass())
 			return false;
 		Tavolo other = (Tavolo) obj;
+		if (occupato != other.occupato)
+			return false;
+		if (oraArrivo == null) {
+			if (other.oraArrivo != null)
+				return false;
+		} else if (!oraArrivo.equals(other.oraArrivo))
+			return false;
+		if (oraVia == null) {
+			if (other.oraVia != null)
+				return false;
+		} else if (!oraVia.equals(other.oraVia))
+			return false;
 		if (posti != other.posti)
 			return false;
 		return true;
@@ -65,6 +80,12 @@ public class Tavolo {
 	@Override
 	public String toString() {
 		return posti+" "+occupato+" "+oraArrivo+" "+oraVia;
+	}
+
+	@Override
+	public int compareTo(Tavolo o) {
+		
+		return (this.posti-o.posti);
 	}
 	
 	
