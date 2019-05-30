@@ -122,7 +122,7 @@ public class Simulatore {
 				
 				int clienti = ev.getNum_persone();
 				Tavolo t= this.cercaTPosti(clienti);
-				//Tavolo t= this.tMin(tavolimin);
+				
 				if (t!=null) {
 				t.setOccupato(true);
 				t.setOraArrivo(ev.getTime());
@@ -133,17 +133,17 @@ public class Simulatore {
 				Evento e2 = new Evento (ev.getTime().plusMinutes(ev.getDurata().toMinutes()),clienti,ev.getDurata(),ev.getTolleranza(),TipoEvento.USCITA);
 				queue.add(e2);
 				
-				System.out.println(ev.toString()+" è soddisfatto e si è seduto al tavolo con posti: "+t.getPosti());
+				System.out.println(ev.toString()+" si sono seduti al tavolo al con posti: "+t.getPosti());
 				} else {
 					
 					if(ev.getTolleranza()>=0.5) {
 					numero_totale_clienti+=clienti;
 					numero_clienti_soddisfatti+=clienti;
-					System.out.println(ev.toString()+" è soddisfatto e si è seduto al bancone");
+					System.out.println(ev.toString()+" sono soddisfatti e si sono sedutial bancone");
 				} else {
 					numero_totale_clienti+=clienti;
 					numero_clienti_insoddisfatti+=clienti;
-					System.out.println(ev.toString()+" non è soddisfatto e se ne è andato via");
+					System.out.println(ev.toString()+" non sono soddisfatti e se ne sono andati via");
 				}
 				
 				}
@@ -160,11 +160,13 @@ public class Simulatore {
 					}
 				}
 				uscito.setOccupato(false);
+				System.out.print("Si e' liberato un tavolo da N posti: "+uscito.getPosti()+"\n");
 				break;
 			}
 				
 		}
-		
+		System.out.println("N tot clienti: "+numero_totale_clienti+"\n"+" N clienti soddisfatti"
+				+numero_clienti_soddisfatti+"\n"+" N clienti insoddisfatti: "+numero_clienti_insoddisfatti);
 	}
 
 	public int getNumero_totale_clienti() {
@@ -180,14 +182,7 @@ public class Simulatore {
 	}
 	
 	public Tavolo cercaTPosti(int n){
-//		List<Tavolo> res= new ArrayList<Tavolo>();
-//		for (Tavolo t: tavoli) {
-//			if(t.getPosti()>= n && t.getPosti()>=n/2 && t.getOccupato()==false) {
-//				res.add(t);
-//			}
-//		}
-//		Collections.sort(res);
-//		return res;
+
 		int postiTavoloMin = Integer.MAX_VALUE;
 		Tavolo returnTable = null;
 
@@ -208,18 +203,6 @@ public class Simulatore {
 		return returnTable;
 	}
 	
-	public Tavolo tMin(List<Tavolo> TAVOLI) {
-		
-		Tavolo min = null;
-
-		for (Tavolo t: TAVOLI) {
-			int i=1;
-			if (t.getPosti()< TAVOLI.get(i).getPosti()) {
-				min=t;
-			}
-			i++;
-		}
-		return min;
-	}
+	
 	
 }

@@ -26,7 +26,13 @@ public class BarController {
     @FXML
     void t(ActionEvent event) {
     	txtResult.clear();
-    	this.model.simula();
+    	
+    	for (int t=0; t<2; t++) {
+    		this.model.simula();
+    		
+    		
+    	}
+    	
     }
 
     @FXML
