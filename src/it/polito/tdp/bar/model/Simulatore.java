@@ -36,6 +36,7 @@ public class Simulatore {
 	private List<Float> toll= new ArrayList<Float>();
 	
 	
+	
 	//STATISTICHE-->VALORI IN OUTPUT
 	
 	private int numero_totale_clienti;
@@ -46,6 +47,8 @@ public class Simulatore {
 	//VARIABILI INTERNE
 	
 	Random rand= new Random();
+
+	private LocalTime ultimaOra;
 	
 	public Simulatore () {
 		for (int i=1; i<=10; i++) {
@@ -84,6 +87,8 @@ public class Simulatore {
 		tavoli.add(new Tavolo(4,false,null,null));
 		
 		Collections.sort(tavoli);
+		
+		
 
 	}
 	
@@ -93,9 +98,11 @@ public class Simulatore {
 		this.numero_clienti_insoddisfatti=0;
 		this.numero_clienti_soddisfatti=0;
 		this.numero_totale_clienti=0;
+		LocalTime ora= null;
+		ultimaOra = LocalTime.MIN;
 		
-		
-	for (LocalTime ora= oraInizio; ora.isBefore(oraFine);ora=ora.plus(intervalloArrivoCliente)) {
+
+		for (int E=0; E<2000; E++) {
 		int inte= rand.nextInt(intCliente.size());
 		intervalloArrivoCliente = intCliente.get(inte);
 			int n= rand.nextInt(NUMP.size());
@@ -104,12 +111,11 @@ public class Simulatore {
 			durata = dur.get(d);
 			int t= rand.nextInt(toll.size());
 			tolleranza = toll.get(t);
-			
-
+			ora = ultimaOra.plusMinutes(intervalloArrivoCliente.toMinutes());
+			ultimaOra=ora;
 			queue.add(new Evento(ora,numP,durata,tolleranza,TipoEvento.ARRIVO_GRUPPO_CLIENTI));
-		}
 }
-
+	}
 	
 	public void run() {
 		
@@ -203,6 +209,9 @@ public class Simulatore {
 		return returnTable;
 	}
 	
+	public void aggiungiTavolo ( Tavolo t) {
+		tavoli.add(t);
+	}
 	
 	
 }

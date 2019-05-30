@@ -13,5 +13,9 @@ public class Model {
 		sim.run();
 		
 	}
+	
+	public Simulatore getSimulatore() {
+		return sim;
+	}
 
 }
