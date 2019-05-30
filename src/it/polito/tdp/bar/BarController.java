@@ -1,12 +1,12 @@
 package it.polito.tdp.bar;
 
 import java.net.URL;
-import java.util.Collections;
+
 import java.util.ResourceBundle;
 
 import it.polito.tdp.bar.model.Model;
 import it.polito.tdp.bar.model.Simulatore;
-import it.polito.tdp.bar.model.Tavolo;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

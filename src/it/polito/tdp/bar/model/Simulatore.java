@@ -5,10 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+
 import java.util.PriorityQueue;
 import java.util.Random;
-import java.util.TreeMap;
+
 
 import it.polito.tdp.bar.model.Evento;
 import it.polito.tdp.bar.model.Evento.TipoEvento;
@@ -24,8 +24,7 @@ public class Simulatore {
 	
 	// valori che cambiano e in vase alle quali cambia la simulazione
 	
-	private LocalTime oraInizio = LocalTime.of(8, 0);
-	private LocalTime oraFine = LocalTime.of(20, 0);
+	
 	private Duration intervalloArrivoCliente;
 	private List<Duration> intCliente = new ArrayList<Duration>();
 	private int numP;
