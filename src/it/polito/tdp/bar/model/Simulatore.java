@@ -33,6 +33,7 @@ public class Simulatore {
 	private List<Duration> dur = new ArrayList<Duration>();
 	private float tolleranza;
 	private List<Float> toll= new ArrayList<Float>();
+	private float probabilita;
 	
 	
 	
@@ -87,7 +88,7 @@ public class Simulatore {
 		
 		Collections.sort(tavoli);
 		
-		
+		probabilita = 0;
 
 	}
 	
@@ -112,6 +113,7 @@ public class Simulatore {
 			tolleranza = toll.get(t);
 			ora = ultimaOra.plusMinutes(intervalloArrivoCliente.toMinutes());
 			ultimaOra=ora;
+			
 			queue.add(new Evento(ora,numP,durata,tolleranza,TipoEvento.ARRIVO_GRUPPO_CLIENTI));
 }
 	}
@@ -121,12 +123,17 @@ public class Simulatore {
 		while (!queue.isEmpty()) {
 			Evento ev = queue.poll();
 			System.out.println(ev) ;
+			int p = rand.nextInt(toll.size());
+			probabilita = toll.get(p);
+			System.out.println(this.probabilita);
 			switch(ev.getTipo()) {
 			
 			case ARRIVO_GRUPPO_CLIENTI :
 				
 				int clienti = ev.getNum_persone();
 				Tavolo t= this.cercaTPosti(clienti);
+				
+				
 				
 				if (t!=null) {
 				t.setOccupato(true);
@@ -141,7 +148,7 @@ public class Simulatore {
 				System.out.println(ev.toString()+" si sono seduti al tavolo al con posti: "+t.getPosti());
 				} else {
 					
-					if(ev.getTolleranza()>=0.5) {
+					if(ev.getTolleranza()>= probabilita) {
 					numero_totale_clienti+=clienti;
 					numero_clienti_soddisfatti+=clienti;
 					System.out.println(ev.toString()+" sono soddisfatti e si sono sedutial bancone");
